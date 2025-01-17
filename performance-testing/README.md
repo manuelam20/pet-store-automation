@@ -8,11 +8,6 @@ This repository contains performance tests for the API endpoints using [k6](http
 - [Installation](#installation)
 - [Running Tests](#running-tests)
   - [Run All Tests](#run-all-tests)
-  - [Run a Specific Test](#run-a-specific-test)
-- [Exporting Results](#exporting-results)
-- [Customizing Tests](#customizing-tests)
-- [Contributing](#contributing)
-- [License](#license)
 
 ## Introduction
 

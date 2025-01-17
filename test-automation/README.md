@@ -19,8 +19,7 @@ The solution leverages **Playwright** to automate API requests for Swagger Pet s
 ├── playwright.config.ts   # Playwright configuration file
 ├── package.json           # Dependencies and scripts
 ├── tests/                 # Folder containing test cases
-│   ├── example.api.spec.ts# Example API test case
-│   ├── user.api.spec.ts   # Tests for user-related endpoints
+│   ├── *.api.spec.ts      # Tests for user-related endpoints
 │   └── ...
 
 ```
