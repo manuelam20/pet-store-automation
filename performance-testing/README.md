@@ -41,3 +41,10 @@ To run all tests in the tests/ folder, use the following command:
 
  ```bash
 npm run test
+```
+# Resolving Problems
+If you get an error running npm run test related to permissions run the following command in the terminal to make the run-tests.sh script executable:
+
+ ```bash
+chmod +x run-tests.sh
+```

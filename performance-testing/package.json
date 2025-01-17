@@ -3,7 +3,7 @@
     "version": "1.0.0",
     "scripts": {
       "build": "tsc", 
-      "test": "tsc && API_URL=http://localhost:8080 k6 run tests/*.js --summary-export=summary.json"
+      "test": "tsc && ./run-tests.sh"
     },
   "dependencies": {
     "typescript": "^5.7.3"
