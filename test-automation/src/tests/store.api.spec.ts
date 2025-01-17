@@ -9,7 +9,7 @@ test('Check store inventory API response', async () => {
     expect(Object.keys(responseBody)).toEqual(['approved', 'placed', 'delivered']);
 });
 
-test('Verify that quantity increase or decrease on Inventory after POST request to the orders', async ({ request }) => {
+test('Verify that quantity increase or decrease on Inventory after POST request to the orders', async ({ }) => {
   const client = await apiClient();
     // Define the common parts of the POST request body
     const baseBody = {
@@ -36,14 +36,14 @@ test('Verify that quantity increase or decrease on Inventory after POST request 
      
  
      // Send the POST request
-     const postResponse = await request.post('/api/v3/store/order', {
+     const postResponse = await client.post('/api/v3/store/order', {
        data: requestBody
      });
     expect(postResponse.status()).toBeGreaterThanOrEqual(200);
     expect(postResponse.status()).toBeLessThan(300);
 
     // Send a GET request to fetch the updated inventory
-    const updatedInventoryResponse = await request.get('/api/v3/store/inventory');
+    const updatedInventoryResponse = await client.get('/api/v3/store/inventory');
     expect(updatedInventoryResponse.status()).toBe(200);
 
      // Parse the updated inventory
@@ -60,16 +60,16 @@ test('Verify that quantity increase or decrease on Inventory after POST request 
   }
   });
 
-  test('Verify orders created with POST are retrievable and deletable via DELETE /store/order/{orderId}', async ({ request }) => {
-
+  test('Verify orders created with POST are retrievable and deletable via DELETE /store/order/{orderId}', async ({ }) => {
+    const client = await apiClient();
     const generateDynamicId = () => Date.now() + Math.floor(Math.random() * 20); // Generate a unique ID
   // Define the common parts of the POST request body
-  const baseBody = {
-    petId: 198772,
-    quantity: 7,
-    shipDate: new Date().toISOString(),
-    complete: true
-  };
+    const baseBody = {
+      petId: 198772,
+      quantity: 7,
+      shipDate: new Date().toISOString(),
+      complete: true
+    };
 
   // Define the statuses to send
   const statuses = ['approved', 'placed', 'delivered'];
@@ -79,7 +79,7 @@ test('Verify that quantity increase or decrease on Inventory after POST request 
     const requestBody = { ...baseBody, id: generateDynamicId(), status };
 
     // Send the POST request to create an order
-    const postResponse = await request.post('/api/v3/store/order', {
+    const postResponse = await client.post('/api/v3/store/order', {
       data: requestBody
     });
 
@@ -95,7 +95,7 @@ test('Verify that quantity increase or decrease on Inventory after POST request 
     expect(createdOrder.quantity).toBe(baseBody.quantity);
 
     // Send a GET request to retrieve the order by ID
-    const getResponse = await request.get(`/api/v3/store/order/${createdOrder.id}`);
+    const getResponse = await client.get(`/api/v3/store/order/${createdOrder.id}`);
 
     // Ensure the GET request was successful
     expect(getResponse.status()).toBe(200);
@@ -110,19 +110,16 @@ test('Verify that quantity increase or decrease on Inventory after POST request 
     expect(retrievedOrder.complete).toBe(createdOrder.complete);
 
 
-   const deleteResponse = await request.delete(`api/v3/store/order/${createdOrder.id}`);
+   const deleteResponse = await client.delete(`api/v3/store/order/${createdOrder.id}`);
 
     // Ensure the DELETE request was successful
     expect(deleteResponse.status()).toBeGreaterThanOrEqual(200);
     expect(deleteResponse.status()).toBeLessThan(300);
 
     // Send another GET request to verify the order no longer exists
-    const verifyDeleteResponse = await request.get(`/api/v3/store/order/${createdOrder.id}`);
+    const verifyDeleteResponse = await client.get(`/api/v3/store/order/${createdOrder.id}`);
 
     // Ensure the GET request returns a 404 or an appropriate status for non-existent resources
     expect(verifyDeleteResponse.status()).toBe(404);
-
-    // Log the result (optional)
-    console.log(`Verified and deleted order with ID: ${createdOrder.id} and status: ${createdOrder.status}`);
   }
 });

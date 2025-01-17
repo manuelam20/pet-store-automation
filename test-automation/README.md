@@ -57,6 +57,11 @@ Run all test cases in the project:
 ```bash
 npx playwright test
 ```
+Or from test-automation path
+```bash
+npm run test
+```
+
 
 ### Run a Specific Test File
 To run a specific test file:

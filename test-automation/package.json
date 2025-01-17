@@ -4,13 +4,14 @@
   "description": "This repository contains the implementation of test automation using **Playwright**. The following document provides an overview of the solution, its structure, and instructions to set up and execute the tests.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "npx playwright test src/tests"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "@playwright/test": "^1.49.1",
+    "@types/node": "^22.10.7",
     "playwright": "^1.49.1",
     "ts-node": "^10.9.2",
     "typescript": "^5.7.3"
