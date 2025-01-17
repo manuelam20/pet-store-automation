@@ -1,0 +1,11 @@
+{
+    "name": "k6-performance-test",
+    "version": "1.0.0",
+    "scripts": {
+      "build": "tsc", 
+      "test": "tsc && API_URL=http://localhost:8080 k6 run tests/*.js --summary-export=summary.json"
+    },
+  "dependencies": {
+    "typescript": "^5.7.3"
+  }
+}

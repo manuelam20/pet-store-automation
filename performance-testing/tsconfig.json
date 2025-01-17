@@ -1,0 +1,14 @@
+{
+    "compilerOptions": {
+      "module": "ESNext",
+      "target": "ES6",
+      "lib": ["ES6"],
+      "esModuleInterop": true,
+      "skipLibCheck": true,
+      "moduleResolution": "Node"
+    },
+    "include": [
+      "tests/**/*.ts",
+      "global.d.ts"
+    ]
+  }
